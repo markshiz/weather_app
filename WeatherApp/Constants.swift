@@ -8,5 +8,7 @@
 
 import Foundation
 import CoreLocation
+import SwiftUI
 
 let START_LOCATION = CLLocationCoordinate2D(latitude: 38.732631, longitude: -90.279732)
+let DEFAULT_WEATHER_IMAGE = Image("DefaultWeatherImage")
