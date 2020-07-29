@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,9 @@
 		029DBABD24D1173600A697C5 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBABC24D1173600A697C5 /* MapView.swift */; };
 		029DBABF24D1189D00A697C5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBABE24D1189D00A697C5 /* Constants.swift */; };
 		029DBAC224D11DBF00A697C5 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBAC124D11DBF00A697C5 /* CircleImage.swift */; };
+		029DBAC524D1BFCD00A697C5 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 029DBAC424D1BFCD00A697C5 /* ComposableArchitecture */; };
+		029DBAC724D1BFCD00A697C5 /* ComposableCoreLocation in Frameworks */ = {isa = PBXBuildFile; productRef = 029DBAC624D1BFCD00A697C5 /* ComposableCoreLocation */; };
+		029DBACA24D1C02F00A697C5 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBAC924D1C02F00A697C5 /* AppState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,7 @@
 		029DBABC24D1173600A697C5 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		029DBABE24D1189D00A697C5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		029DBAC124D11DBF00A697C5 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		029DBAC924D1C02F00A697C5 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				029DBAC724D1BFCD00A697C5 /* ComposableCoreLocation in Frameworks */,
+				029DBAC524D1BFCD00A697C5 /* ComposableArchitecture in Frameworks */,
 				029DBABB24D116CE00A697C5 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,24 +115,25 @@
 		029DBA8824D1162E00A697C5 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				029DBAC824D1C02700A697C5 /* State */,
 				029DBAC024D11A9E00A697C5 /* MainView */,
+				029DBA9124D1163000A697C5 /* Resources */,
 				029DBA8924D1162E00A697C5 /* AppDelegate.swift */,
 				029DBA8B24D1162E00A697C5 /* SceneDelegate.swift */,
-				029DBA8F24D1163000A697C5 /* Assets.xcassets */,
-				029DBA9424D1163000A697C5 /* LaunchScreen.storyboard */,
-				029DBA9724D1163000A697C5 /* Info.plist */,
-				029DBA9124D1163000A697C5 /* Preview Content */,
 				029DBABE24D1189D00A697C5 /* Constants.swift */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
 		};
-		029DBA9124D1163000A697C5 /* Preview Content */ = {
+		029DBA9124D1163000A697C5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				029DBA8F24D1163000A697C5 /* Assets.xcassets */,
 				029DBA9224D1163000A697C5 /* Preview Assets.xcassets */,
+				029DBA9424D1163000A697C5 /* LaunchScreen.storyboard */,
+				029DBA9724D1163000A697C5 /* Info.plist */,
 			);
-			path = "Preview Content";
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		029DBA9F24D1163000A697C5 /* WeatherAppTests */ = {
@@ -165,6 +172,14 @@
 			path = MainView;
 			sourceTree = "<group>";
 		};
+		029DBAC824D1C02700A697C5 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				029DBAC924D1C02F00A697C5 /* AppState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -181,6 +196,10 @@
 			dependencies = (
 			);
 			name = WeatherApp;
+			packageProductDependencies = (
+				029DBAC424D1BFCD00A697C5 /* ComposableArchitecture */,
+				029DBAC624D1BFCD00A697C5 /* ComposableCoreLocation */,
+			);
 			productName = WeatherApp;
 			productReference = 029DBA8624D1162E00A697C5 /* WeatherApp.app */;
 			productType = "com.apple.product-type.application";
@@ -253,6 +272,9 @@
 				Base,
 			);
 			mainGroup = 029DBA7D24D1162E00A697C5;
+			packageReferences = (
+				029DBAC324D1BFCD00A697C5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = 029DBA8724D1162E00A697C5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -298,6 +320,7 @@
 			files = (
 				029DBABF24D1189D00A697C5 /* Constants.swift in Sources */,
 				029DBA8A24D1162E00A697C5 /* AppDelegate.swift in Sources */,
+				029DBACA24D1C02F00A697C5 /* AppState.swift in Sources */,
 				029DBABD24D1173600A697C5 /* MapView.swift in Sources */,
 				029DBA8C24D1162E00A697C5 /* SceneDelegate.swift in Sources */,
 				029DBA8E24D1162E00A697C5 /* ContentView.swift in Sources */,
@@ -467,10 +490,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"WeatherApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"WeatherApp/Resources/\"";
 				DEVELOPMENT_TEAM = D63A5XC5P7;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = WeatherApp/Info.plist;
+				INFOPLIST_FILE = WeatherApp/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -487,10 +510,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"WeatherApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"WeatherApp/Resources/\"";
 				DEVELOPMENT_TEAM = D63A5XC5P7;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = WeatherApp/Info.plist;
+				INFOPLIST_FILE = WeatherApp/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -626,6 +649,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		029DBAC324D1BFCD00A697C5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		029DBAC424D1BFCD00A697C5 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 029DBAC324D1BFCD00A697C5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+		029DBAC624D1BFCD00A697C5 /* ComposableCoreLocation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 029DBAC324D1BFCD00A697C5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableCoreLocation;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 029DBA7E24D1162E00A697C5 /* Project object */;
 }
