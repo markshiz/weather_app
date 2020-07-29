@@ -27,23 +27,37 @@ struct ContentView: View {
                     }
                 }
                 .padding()
+
                 Spacer()
-            }
+            }.background(Color(UIColor.systemBackground))
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(
-          store: Store(
-            initialState: AppState(),
-            reducer: appReducer,
-            environment: AppEnvironment(
-              mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-              currentConditionResponse: { number in Effect(value: CurrentConditionResponse()) }
+        Group {
+            ContentView(
+              store: Store(
+                initialState: AppState(),
+                reducer: appReducer,
+                environment: AppEnvironment(
+                  mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+                  currentConditionResponse: { number in Effect(value: CurrentConditionResponse()) }
+                )
+              )
             )
-          )
-        )
+            
+            ContentView(
+              store: Store(
+                initialState: AppState(),
+                reducer: appReducer,
+                environment: AppEnvironment(
+                  mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+                  currentConditionResponse: { number in Effect(value: CurrentConditionResponse()) }
+                )
+              )
+            ).environment(\.colorScheme, .dark)
+        }
     }
 }
