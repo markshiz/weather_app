@@ -25,6 +25,7 @@
 		029DBACC24D1C27100A697C5 /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBACB24D1C27100A697C5 /* AppAction.swift */; };
 		029DBACE24D1C2BD00A697C5 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBACD24D1C2BD00A697C5 /* AppEnvironment.swift */; };
 		029DBAD024D1C32A00A697C5 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBACF24D1C32A00A697C5 /* AppReducer.swift */; };
+		029DBAD224D1C75100A697C5 /* CurrentConditionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBAD124D1C75100A697C5 /* CurrentConditionResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		029DBACB24D1C27100A697C5 /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
 		029DBACD24D1C2BD00A697C5 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		029DBACF24D1C32A00A697C5 /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
+		029DBAD124D1C75100A697C5 /* CurrentConditionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentConditionResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		029DBA8824D1162E00A697C5 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				029DBAD324D1C75B00A697C5 /* API */,
 				029DBAC824D1C02700A697C5 /* Architecture */,
 				029DBAC024D11A9E00A697C5 /* MainView */,
 				029DBA9124D1163000A697C5 /* Resources */,
@@ -187,6 +190,14 @@
 				029DBACF24D1C32A00A697C5 /* AppReducer.swift */,
 			);
 			path = Architecture;
+			sourceTree = "<group>";
+		};
+		029DBAD324D1C75B00A697C5 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				029DBAD124D1C75100A697C5 /* CurrentConditionResponse.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,6 +346,7 @@
 				029DBABD24D1173600A697C5 /* MapView.swift in Sources */,
 				029DBA8C24D1162E00A697C5 /* SceneDelegate.swift in Sources */,
 				029DBA8E24D1162E00A697C5 /* ContentView.swift in Sources */,
+				029DBAD224D1C75100A697C5 /* CurrentConditionResponse.swift in Sources */,
 				029DBAC224D11DBF00A697C5 /* CircleImage.swift in Sources */,
 				029DBACE24D1C2BD00A697C5 /* AppEnvironment.swift in Sources */,
 			);

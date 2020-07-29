@@ -6,10 +6,10 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
   case .searchExecuted:
     // TODO
     return .none
-  case .weatherResponse(.success(let response)):
+  case .currentConditionResponse(.success(let response)):
     // TODO
     return .none
-  case .weatherResponse(.failure(let error)):
+  case .currentConditionResponse(.failure(let error)):
     // TODO
     return .none
   }

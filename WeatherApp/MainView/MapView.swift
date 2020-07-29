@@ -19,6 +19,6 @@ struct MapView: UIViewRepresentable {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(coordinate: START_LOCATION)
+        MapView(coordinate: Constants.START_LOCATION)
     }
 }

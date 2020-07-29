@@ -16,6 +16,6 @@ struct CircleImage: View {
 
 struct CircleImage_Previews: PreviewProvider {
     static var previews: some View {
-        CircleImage(image: DEFAULT_WEATHER_IMAGE)
+        CircleImage(image: Constants.DEFAULT_WEATHER_IMAGE)
     }
 }
