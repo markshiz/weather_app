@@ -10,14 +10,14 @@ struct ContentView: View {
             VStack {
                 MapView(coordinate: viewStore.locationCoordinate)
                     .edgesIgnoringSafeArea(.top)
-                    .frame(height: 150)
+                    .frame(height: 100)
                 CircleImage(image: viewStore.conditionImage)
-                    .frame(width: 100, height: 100)
-                    .offset(y: -50)
-                    .padding(.bottom, -50)
+                    .frame(width: 70, height: 70)
+                    .offset(y: -35)
+                    .padding(.bottom, -35)
                 VStack(alignment: .leading) {
                     Text(viewStore.condition)
-                        .font(.title)
+                        .font(.headline)
                     HStack(alignment: .top) {
                         Text(viewStore.locationName)
                             .font(.subheadline)
@@ -25,9 +25,10 @@ struct ContentView: View {
                         Text(viewStore.temperatureDegrees)
                             .font(.headline)
                     }
-                }
-                .padding()
-
+                }.padding()
+                List(viewStore.dailyWeather, id: \.uuid, rowContent: { weather in
+                    DailyWeatherRow(state: weather)
+                })
                 Spacer()
             }.background(Color(UIColor.systemBackground))
         }

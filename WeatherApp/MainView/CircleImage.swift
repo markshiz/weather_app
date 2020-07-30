@@ -1,16 +1,18 @@
 import SwiftUI
 
 struct CircleImage: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     var image: Image
 
     var body: some View {
         image
             .resizable()
-            .background(Color.white)
+            .background(Color(UIColor.systemBackground))
             .clipShape(Circle())
             .scaledToFit()
-            .overlay(Circle().stroke(Color.white, lineWidth: 4))
-            .shadow(radius: 10)
+            .overlay(Circle().stroke(colorScheme == .dark ? Color.gray : .white, lineWidth: 1))
+            .shadow(color: .gray, radius: 10)
     }
 }
 

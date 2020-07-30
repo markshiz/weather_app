@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02379C1124D26626001C3687 /* DailyWeatherRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02379C1024D26626001C3687 /* DailyWeatherRow.swift */; };
 		029DBA8A24D1162E00A697C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBA8924D1162E00A697C5 /* AppDelegate.swift */; };
 		029DBA8C24D1162E00A697C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBA8B24D1162E00A697C5 /* SceneDelegate.swift */; };
 		029DBA8E24D1162E00A697C5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBA8D24D1162E00A697C5 /* ContentView.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02379C1024D26626001C3687 /* DailyWeatherRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherRow.swift; sourceTree = "<group>"; };
 		029DBA8624D1162E00A697C5 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		029DBA8924D1162E00A697C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		029DBA8B24D1162E00A697C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				029DBA8D24D1162E00A697C5 /* ContentView.swift */,
 				029DBABC24D1173600A697C5 /* MapView.swift */,
 				029DBAC124D11DBF00A697C5 /* CircleImage.swift */,
+				02379C1024D26626001C3687 /* DailyWeatherRow.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				029DBAD224D1C75100A697C5 /* CurrentConditionResponse.swift in Sources */,
 				029DBAC224D11DBF00A697C5 /* CircleImage.swift in Sources */,
 				029DBACE24D1C2BD00A697C5 /* AppEnvironment.swift in Sources */,
+				02379C1124D26626001C3687 /* DailyWeatherRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

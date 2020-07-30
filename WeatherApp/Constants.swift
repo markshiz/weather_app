@@ -11,6 +11,7 @@ import CoreLocation
 import SwiftUI
 
 class Constants {
-static let START_LOCATION = CLLocationCoordinate2D(latitude: 38.732631, longitude: -90.279732)
-static let DEFAULT_WEATHER_IMAGE = Image("DefaultWeatherImage")
+    static let START_LOCATION = CLLocationCoordinate2D(latitude: 38.732631, longitude: -90.279732)
+    static let DEFAULT_WEATHER_IMAGE = Image("DefaultWeatherImage")
+    static let SAMPLE_WEATHER = DailyWeather(image: Constants.DEFAULT_WEATHER_IMAGE, condition: "Unknown", hiTemp: "--° F", lowTemp: "--° F")
 }
