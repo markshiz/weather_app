@@ -52,7 +52,7 @@ struct ContentView_Previews: PreviewProvider {
                 reducer: appReducer,
                 environment: AppEnvironment(
                   mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                  currentConditionResponse: { number in Effect(value: CurrentConditionResponse()) }
+                  currentConditionResponse: { query in Effect(error: ApiError()) }
                 )
               )
             )
@@ -63,7 +63,7 @@ struct ContentView_Previews: PreviewProvider {
                 reducer: appReducer,
                 environment: AppEnvironment(
                   mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                  currentConditionResponse: { number in Effect(value: CurrentConditionResponse()) }
+                  currentConditionResponse: { query in Effect(error: ApiError()) }
                 )
               )
             ).environment(\.colorScheme, .dark)
