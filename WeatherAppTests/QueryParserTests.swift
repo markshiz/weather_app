@@ -4,42 +4,67 @@ import XCTest
 class QueryParserTests: XCTestCase {
     let testObject = QueryParser()
     
-    override func setUpWithError() throws {
-    }
-
-    override func tearDownWithError() throws {
-    }
-    
     func testWhitespace() {
         let result = testObject.parse(term: "         ")
-        XCTAssertEqual(result, QueryParser.ResultType.unrecognized)
+        XCTAssertEqual(result, .unrecognized)
     }
     
     func testGarbage() {
         let result = testObject.parse(term: "=;.;;;;;;")
-        XCTAssertEqual(result, QueryParser.ResultType.unrecognized)
+        XCTAssertEqual(result, .unrecognized)
     }
 
     func testGarbageWithSpaces() {
         let result = testObject.parse(term: "=;.  ;;;;;;  ")
-        XCTAssertEqual(result, QueryParser.ResultType.unrecognized)
+        XCTAssertEqual(result, .unrecognized)
     }
     
-    func testZipcode() {
+    func testZipcode5() {
         let result = testObject.parse(term: "63109")
-        XCTAssertEqual(result, QueryParser.ResultType.zipCode("63109"))
+        XCTAssertEqual(result, .zipCode("63109"))
+    }
+    
+    func testZipcode10() {
+        let result = testObject.parse(term: "63136-3980")
+        XCTAssertEqual(result, .zipCode("63136-3980"))
+    }
+    
+    func testZipcode10NoDash() {
+        let result = testObject.parse(term: "631363980")
+        XCTAssertEqual(result, .zipCode("631363980"))
     }
     
     func testLatitudeLongitude() {
         let result = testObject.parse(term: "38, -90")
-        XCTAssertEqual(result, QueryParser.ResultType.latitudeLongitude(38, -90))
+        XCTAssertEqual(result, .latitudeLongitude(38, -90))
+    }
+    
+    func testLatitudeLongitude2() {
+        let result = testObject.parse(term: "(38, -90)")
+        XCTAssertEqual(result, .latitudeLongitude(38, -90))
+    }
+    func testLatitudeLongitude3() {
+        let result = testObject.parse(term: "(38.5, -90.4)")
+        XCTAssertEqual(result, .latitudeLongitude(38.5, -90.4))
     }
     
     func testCity() {
         let result = testObject.parse(term: "Chicago")
-        XCTAssertEqual(result, QueryParser.ResultType.cityName("Chicago"))
+        XCTAssertEqual(result, .cityName("Chicago"))
     }
-
-    func testPerformanceExample() throws {
+    
+    func testCityAndState() {
+        let result = testObject.parse(term: "Chicago, IL")
+        XCTAssertEqual(result, .cityAndState("Chicago", "IL"))
+    }
+    
+    func testCityAndState2() {
+        let result = testObject.parse(term: "St Louis, MO")
+        XCTAssertEqual(result, .cityAndState("St Louis", "MO"))
+    }
+    
+    func testCityAndState3() {
+        let result = testObject.parse(term: "St. Louis, MO")
+        XCTAssertEqual(result, .cityAndState("St. Louis", "MO"))
     }
 }
