@@ -6,7 +6,7 @@ struct MapView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView(frame: .zero)
-        mapView.mapType = MKMapType.satellite
+        mapView.mapType = MKMapType.mutedStandard
         return mapView
     }
 

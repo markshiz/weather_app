@@ -8,6 +8,14 @@ struct ContentView: View {
     var body: some View {
         WithViewStore(self.store) { viewStore in
             VStack {
+                TextField(
+                  "St Louis, 63109, (38.0, -90.0) ...",
+                  text: viewStore.binding(
+                    get: { $0.searchQuery }, send: AppAction.searchTermChanged)
+                )
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+                .padding(5)
                 MapView(coordinate: viewStore.locationCoordinate)
                     .edgesIgnoringSafeArea(.top)
                     .frame(height: 100)
@@ -48,7 +56,7 @@ struct ContentView_Previews: PreviewProvider {
                 )
               )
             )
-            
+                
             ContentView(
               store: Store(
                 initialState: AppState(),

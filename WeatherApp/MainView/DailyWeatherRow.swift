@@ -5,10 +5,10 @@ struct DailyWeatherRow: View {
     
     var body: some View {
         HStack {
+            Text(state.condition)
             state.image
                 .resizable()
                 .frame(width: 44, height: 44)
-            Text(state.condition)
             Spacer()
             Text(state.hiTemp)
             Text("/")

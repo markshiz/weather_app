@@ -1,7 +1,7 @@
 import Foundation
 
 enum AppAction: Equatable {
-  case searchExecuted
+  case searchTermChanged(String)
   case currentConditionResponse(Result<CurrentConditionResponse, ApiError>)
 }
 

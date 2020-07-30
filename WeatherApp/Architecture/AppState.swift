@@ -29,6 +29,7 @@ struct AppState: Equatable {
     var condition: String
     var conditionImage: Image
     var dailyWeather: [DailyWeather]
+    var searchQuery: String
     
     init() {
         self.temperatureDegrees = "-- °F"
@@ -37,5 +38,6 @@ struct AppState: Equatable {
         self.condition = "Unknown Condition"
         self.conditionImage = Constants.DEFAULT_WEATHER_IMAGE
         self.dailyWeather = Array(repeating: Constants.SAMPLE_WEATHER, count: 7)
+        self.searchQuery = ""
     }
 }
