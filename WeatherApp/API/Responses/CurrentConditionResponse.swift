@@ -18,6 +18,7 @@ struct WeatherConditions: Equatable, Decodable {
 }
 
 struct CurrentConditionResponse: Equatable, Decodable {
+    let id: Int
     let coord: Coordinate
     let main: MainConditions
     let name: String

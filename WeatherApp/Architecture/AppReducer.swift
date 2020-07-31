@@ -23,13 +23,15 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
     }
     
   case .currentConditionResponse(.success(let response)):
-    
     state.locationName = response.name
     state.condition = response.weather[0].main
     state.locationCoordinate = CLLocationCoordinate2D(latitude: response.coord.lat, longitude: response.coord.lon)
     state.temperatureDegrees = KelvinToFarenheight(value: response.main.temp)
     
-    return env.weatherClient.conditionImageFromString(string: response.weather[0].icon).scheduled(scheduler: env.mainQueue)
+    return .merge(
+        env.weatherClient.conditionImageFromString(string: response.weather[0].icon).scheduled(scheduler: env.mainQueue),
+        env.weatherClient.searchForecast(cityID: response.id).scheduled(scheduler: env.mainQueue)
+    )
   case .currentConditionResponse(.failure(let error)):
     // TODO
     return .none
@@ -39,7 +41,10 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
   case .conditionImageChanged(.failure(let error)):
     // TODO
     return .none
-
+  case .forecastResponse(.success(let response)):
+    return .none
+  case .forecastResponse(.failure(let error)):
+    return .none
   }
 }
 
@@ -49,6 +54,16 @@ extension Effect where Output == Image, Failure == ImageFailure {
             .receive(on: scheduler)
             .catchToEffect()
             .map(AppAction.conditionImageChanged)
+            .cancellable(id: UUID(), cancelInFlight: true)
+    }
+}
+
+extension Effect where Output == ForecastResponse, Failure == WeatherClientFailure {
+    func scheduled(scheduler: AnySchedulerOf<DispatchQueue>) -> Effect<AppAction, Never> {
+        return self
+            .receive(on: scheduler)
+            .catchToEffect()
+            .map(AppAction.forecastResponse)
             .cancellable(id: UUID(), cancelInFlight: true)
     }
 }
