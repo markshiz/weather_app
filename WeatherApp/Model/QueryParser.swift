@@ -43,6 +43,9 @@ class QueryParser {
                 return .latitudeLongitude(lat, lng)
             }
             if vals[0].trimmed.isAlphabetical, vals[1].trimmed.isAlphabetical {
+                if vals[1].count == 2, let stateName = StateCodeToStateName(stateCode: vals[1]) {
+                    return .cityAndState(vals[0].trimmed, stateName)
+                }
                 return .cityAndState(vals[0].trimmed, vals[1].trimmed)
             }
         }

@@ -55,16 +55,22 @@ class QueryParserTests: XCTestCase {
     
     func testCityAndState() {
         let result = testObject.parse(term: "Chicago, IL")
-        XCTAssertEqual(result, .cityAndState("Chicago", "IL"))
+        XCTAssertEqual(result, .cityAndState("Chicago", "Illinois"))
     }
     
     func testCityAndState2() {
         let result = testObject.parse(term: "St Louis, MO")
-        XCTAssertEqual(result, .cityAndState("St Louis", "MO"))
+        XCTAssertEqual(result, .cityAndState("St Louis", "Missouri"))
     }
     
     func testCityAndState3() {
         let result = testObject.parse(term: "St. Louis, MO")
-        XCTAssertEqual(result, .cityAndState("St. Louis", "MO"))
+        XCTAssertEqual(result, .cityAndState("St. Louis", "Missouri"))
     }
+    
+    func testCityAndState4() {
+        let result = testObject.parse(term: "Chicago, Illinois")
+        XCTAssertEqual(result, .cityAndState("Chicago", "Illinois"))
+    }
+
 }
