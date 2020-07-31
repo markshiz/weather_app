@@ -17,6 +17,8 @@
 		0282821724D3BFBD0097615F /* KelvinToFarenheight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282821624D3BFBD0097615F /* KelvinToFarenheight.swift */; };
 		0282821C24D3D6E70097615F /* ForecastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282821B24D3D6E70097615F /* ForecastResponse.swift */; };
 		0282821E24D455770097615F /* URLComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282821D24D455770097615F /* URLComponentsFactory.swift */; };
+		0282822524D465B00097615F /* CombineExpectations in Frameworks */ = {isa = PBXBuildFile; productRef = 0282822424D465B00097615F /* CombineExpectations */; };
+		0282822724D465C80097615F /* WeatherClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282822124D4636E0097615F /* WeatherClientTests.swift */; };
 		029DBA8A24D1162E00A697C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBA8924D1162E00A697C5 /* AppDelegate.swift */; };
 		029DBA8C24D1162E00A697C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBA8B24D1162E00A697C5 /* SceneDelegate.swift */; };
 		029DBA8E24D1162E00A697C5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBA8D24D1162E00A697C5 /* ContentView.swift */; };
@@ -66,6 +68,7 @@
 		0282821624D3BFBD0097615F /* KelvinToFarenheight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelvinToFarenheight.swift; sourceTree = "<group>"; };
 		0282821B24D3D6E70097615F /* ForecastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastResponse.swift; sourceTree = "<group>"; };
 		0282821D24D455770097615F /* URLComponentsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLComponentsFactory.swift; sourceTree = "<group>"; };
+		0282822124D4636E0097615F /* WeatherClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherClientTests.swift; sourceTree = "<group>"; };
 		029DBA8624D1162E00A697C5 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		029DBA8924D1162E00A697C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		029DBA8B24D1162E00A697C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0282822524D465B00097615F /* CombineExpectations in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +126,7 @@
 		02235ADB24D2725900E145A6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0282821F24D462D60097615F /* Tests */,
 				02235ADC24D2726700E145A6 /* QueryParser.swift */,
 			);
 			path = Model;
@@ -161,6 +166,22 @@
 				0282821B24D3D6E70097615F /* ForecastResponse.swift */,
 			);
 			path = Responses;
+			sourceTree = "<group>";
+		};
+		0282821F24D462D60097615F /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				02235ADE24D2732D00E145A6 /* QueryParserTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		0282822024D462E60097615F /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				0282822124D4636E0097615F /* WeatherClientTests.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		029DBA7D24D1162E00A697C5 = {
@@ -214,7 +235,6 @@
 		029DBA9F24D1163000A697C5 /* WeatherAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				02235ADE24D2732D00E145A6 /* QueryParserTests.swift */,
 				029DBAA024D1163000A697C5 /* WeatherAppTests.swift */,
 				029DBAA224D1163000A697C5 /* Info.plist */,
 			);
@@ -263,6 +283,7 @@
 		029DBAD324D1C75B00A697C5 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				0282822024D462E60097615F /* Tests */,
 				0256A6D024D30D1E00D8FF00 /* Clients */,
 				0256A6D724D30D4200D8FF00 /* Fixtures */,
 				0282821A24D3D6960097615F /* Responses */,
@@ -308,6 +329,9 @@
 				029DBA9E24D1163000A697C5 /* PBXTargetDependency */,
 			);
 			name = WeatherAppTests;
+			packageProductDependencies = (
+				0282822424D465B00097615F /* CombineExpectations */,
+			);
 			productName = WeatherAppTests;
 			productReference = 029DBA9C24D1163000A697C5 /* WeatherAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -364,6 +388,7 @@
 			mainGroup = 029DBA7D24D1162E00A697C5;
 			packageReferences = (
 				029DBAC324D1BFCD00A697C5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				0282822324D465B00097615F /* XCRemoteSwiftPackageReference "CombineExpectations" */,
 			);
 			productRefGroup = 029DBA8724D1162E00A697C5 /* Products */;
 			projectDirPath = "";
@@ -435,6 +460,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0282822724D465C80097615F /* WeatherClientTests.swift in Sources */,
 				029DBAA124D1163000A697C5 /* WeatherAppTests.swift in Sources */,
 				02235ADF24D2732D00E145A6 /* QueryParserTests.swift in Sources */,
 			);
@@ -755,6 +781,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0282822324D465B00097615F /* XCRemoteSwiftPackageReference "CombineExpectations" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/CombineExpectations.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
 		029DBAC324D1BFCD00A697C5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
@@ -766,6 +800,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0282822424D465B00097615F /* CombineExpectations */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0282822324D465B00097615F /* XCRemoteSwiftPackageReference "CombineExpectations" */;
+			productName = CombineExpectations;
+		};
 		029DBAC424D1BFCD00A697C5 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 029DBAC324D1BFCD00A697C5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;

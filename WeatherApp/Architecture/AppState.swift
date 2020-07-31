@@ -40,7 +40,7 @@ struct AppState: Equatable {
         self.locationName = "Unknown Location"
         self.condition = "Unknown Condition"
         self.conditionImage = Constants.DEFAULT_WEATHER_IMAGE
-        self.dailyWeather = Array(repeating: Constants.SAMPLE_WEATHER, count: 7)
+        self.dailyWeather = []
         self.searchQuery = ""
         self.query = .unrecognized
     }

@@ -8,6 +8,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
   case .searchTermChanged(let term):
     state.searchQuery = term
     state.query = QueryParser().parse(term: term)
+    
     return env.weatherClient.weather(query: state.query).scheduled(scheduler: env.mainQueue)
   case .currentConditionResponse(.success(let response)):
     state.locationName = response.name
@@ -41,7 +42,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
   }
 }
 
-extension Effect where Output == Image, Failure == ImageFailure {
+extension Effect where Output == Image, Failure == APIFailure {
     func scheduled(scheduler: AnySchedulerOf<DispatchQueue>) -> Effect<AppAction, Never> {
         return self
             .receive(on: scheduler)
@@ -51,7 +52,7 @@ extension Effect where Output == Image, Failure == ImageFailure {
     }
 }
 
-extension Effect where Output == ForecastResponse, Failure == WeatherClientFailure {
+extension Effect where Output == ForecastResponse, Failure == APIFailure {
     func scheduled(scheduler: AnySchedulerOf<DispatchQueue>) -> Effect<AppAction, Never> {
         return self
             .receive(on: scheduler)
@@ -61,7 +62,7 @@ extension Effect where Output == ForecastResponse, Failure == WeatherClientFailu
     }
 }
 
-extension Effect where Output == CurrentConditionResponse, Failure == WeatherClientFailure {
+extension Effect where Output == CurrentConditionResponse, Failure == APIFailure {
     func scheduled(scheduler: AnySchedulerOf<DispatchQueue>) -> Effect<AppAction, Never> {
         return self
             .receive(on: scheduler)
