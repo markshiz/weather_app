@@ -42,6 +42,12 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
     // TODO
     return .none
   case .forecastResponse(.success(let response)):
+    state.dailyWeather = response.list.map { item -> DailyWeather in
+        return DailyWeather(image: Constants.DEFAULT_WEATHER_IMAGE, // TODO
+                            condition: item.weather[0].description,
+                            hiTemp: KelvinToFarenheight(value: item.main.tempMax),
+                            lowTemp: KelvinToFarenheight(value: item.main.tempMin))
+    }
     return .none
   case .forecastResponse(.failure(let error)):
     return .none

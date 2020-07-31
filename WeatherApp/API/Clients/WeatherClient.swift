@@ -41,7 +41,7 @@ class WeatherClient: WeatherClientProtocol {
     
     func searchForecast(cityID: Int) -> Effect<ForecastResponse, WeatherClientFailure> {
         guard var components = URLComponents(string: "https://api.openweathermap.org/data/2.5/forecast/daily") else { return Effect(error: WeatherClientFailure())  }
-        components.queryItems = [URLQueryItem(name: "id", value: "\(cityID)"),
+        components.queryItems = [URLQueryItem(name: "id", value: String(cityID)),
                                  URLQueryItem(name: "appid", value: Constants.API_KEY)]
         return URLSession.shared.dataTaskPublisher(for: components.url!)
           .map { data, _ in data }
