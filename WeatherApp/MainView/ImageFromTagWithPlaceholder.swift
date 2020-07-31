@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ImageFromTag<Placeholder: View>: View {
+struct ImageFromTagWithPlaceholder<Placeholder: View>: View {
     @ObservedObject private var fetcher: ImageFetcher
     private let placeholder: Placeholder?
     

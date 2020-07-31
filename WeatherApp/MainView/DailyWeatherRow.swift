@@ -7,7 +7,7 @@ struct DailyWeatherRow: View {
         HStack {
             Text(state.date)
             Text(state.condition).italic()
-            ImageFromTag(tag: state.tag, placeholder: Constants.DEFAULT_WEATHER_IMAGE)
+            ImageFromTagWithPlaceholder(tag: state.tag, placeholder: Constants.DEFAULT_WEATHER_IMAGE)
                 .frame(width: 44, height: 44)
             Spacer()
             Text(state.hiTemp)

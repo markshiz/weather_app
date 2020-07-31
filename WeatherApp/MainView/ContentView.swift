@@ -18,7 +18,7 @@ struct ContentView: View {
                 .padding(5)
                 MapView(coordinate: viewStore.locationCoordinate)
                     .edgesIgnoringSafeArea(.top)
-                    .frame(height: 100)
+                    .frame(height: 200)
                 CircleImage(image: viewStore.conditionImage)
                     .frame(width: 70, height: 70)
                     .offset(y: -35)
