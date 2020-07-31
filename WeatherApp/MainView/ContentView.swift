@@ -40,7 +40,9 @@ struct ContentView: View {
                     }
                 }
                 Spacer()
-            }.background(Color(UIColor.systemBackground))
+            }.background(Color(UIColor.systemBackground)).onAppear {
+                viewStore.send(.searchTermChanged(viewStore.searchQuery))
+            }
         }
     }
 }
