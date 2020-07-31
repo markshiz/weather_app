@@ -5,7 +5,8 @@ struct DailyWeatherRow: View {
     
     var body: some View {
         HStack {
-            Text(state.condition)
+            Text(state.date)
+            Text(state.condition).italic()
             state.image
                 .resizable()
                 .frame(width: 44, height: 44)

@@ -4,6 +4,7 @@ import SwiftUI
 
 struct DailyWeather: Equatable {
     let uuid: UUID = UUID()
+    let date: String
     let image: Image
     let condition: String
     let hiTemp: String

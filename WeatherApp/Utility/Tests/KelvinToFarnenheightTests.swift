@@ -7,5 +7,3 @@ class KelvinToFarenheightTests : XCTestCase {
         XCTAssertEqual(KelvinToFarenheight(value: 295.372), "72 °F")
     }
 }
-
-
