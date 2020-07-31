@@ -6,12 +6,17 @@ enum TestError: Error {
     case missingFile
 }
 
+func TestCurrentConditionResponse() throws -> CurrentConditionResponse {
+    let testBundle = Bundle(for: CurrentConditionResponseTests.self)
+    guard let url = testBundle.url(forResource: "current_location", withExtension: "json") else { throw TestError.missingFile }
+    let data = try Data(contentsOf: url)
+    return try DefaultJSONDecoder().decode(CurrentConditionResponse.self, from: data)
+}
+
+
 class CurrentConditionResponseTests: XCTestCase {
     func testParsing() throws {
-        let testBundle = Bundle(for: type(of: self))
-        guard let url = testBundle.url(forResource: "current_location", withExtension: "json") else { throw TestError.missingFile }
-        let data = try Data(contentsOf: url)
-        let value = try DefaultJSONDecoder().decode(CurrentConditionResponse.self, from: data)
+        let value = try TestCurrentConditionResponse()
         XCTAssertEqual(value.id, 1907296)
         XCTAssertEqual(value.coord.lat, 35.02)
         XCTAssertEqual(value.coord.lon, 139.01)
