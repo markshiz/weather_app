@@ -6,48 +6,23 @@ struct WeatherClientFailure: Error, Equatable {}
 struct ImageFailure: Error, Equatable {}
 
 protocol WeatherClientProtocol {
-    func searchByCity(city: String) -> Effect<CurrentConditionResponse, WeatherClientFailure>
-    func searchByZipcode(zipcode: String) -> Effect<CurrentConditionResponse, WeatherClientFailure>
-    func searchByCoordinates(lat: Double, lon: Double) -> Effect<CurrentConditionResponse, WeatherClientFailure>
-    
-    func searchForecast(cityID: Int) -> Effect<ForecastResponse, WeatherClientFailure>
+    func weather(query: QueryParser.ResultType) -> Effect<CurrentConditionResponse, WeatherClientFailure>
+    func forecast(query: QueryParser.ResultType) -> Effect<ForecastResponse, WeatherClientFailure>
     
     func conditionImageFromString(string: String) -> Effect<Image, ImageFailure>
 }
 
 class WeatherClient: WeatherClientProtocol {
-    // MARK: Current Conditions
+    // MARK: Endpoints
     
-    func searchByCity(city: String) -> Effect<CurrentConditionResponse, WeatherClientFailure> {
-        let queryParameters = [URLQueryItem(name: "q", value: city),
-                               URLQueryItem(name: "appid", value: Constants.API_KEY)]
-        return performCurrentConditionRequest(queryParameters: queryParameters)
+    func weather(query: QueryParser.ResultType) -> Effect<CurrentConditionResponse, WeatherClientFailure> {
+        guard let components = URLComponentsFactory().create(query: query, endpoint: .weather) else { return Effect(error: WeatherClientFailure()) }
+        return performRequest(components: components)
     }
     
-    func searchByZipcode(zipcode: String) -> Effect<CurrentConditionResponse, WeatherClientFailure> {
-        let queryParameters = [URLQueryItem(name: "zip", value: "\(zipcode),us"),
-                               URLQueryItem(name: "appid", value: Constants.API_KEY)]
-        return performCurrentConditionRequest(queryParameters: queryParameters)
-    }
-    
-    func searchByCoordinates(lat: Double, lon: Double) -> Effect<CurrentConditionResponse, WeatherClientFailure> {
-        let queryParameters = [URLQueryItem(name: "lat", value: String(lat)),
-                               URLQueryItem(name: "lon", value: String(lon)),
-                               URLQueryItem(name: "appid", value: Constants.API_KEY)]
-        return performCurrentConditionRequest(queryParameters: queryParameters)
-    }
-    
-    // MARK: Forecast
-    
-    func searchForecast(cityID: Int) -> Effect<ForecastResponse, WeatherClientFailure> {
-        guard var components = URLComponents(string: "https://api.openweathermap.org/data/2.5/forecast/daily") else { return Effect(error: WeatherClientFailure())  }
-        components.queryItems = [URLQueryItem(name: "id", value: String(cityID)),
-                                 URLQueryItem(name: "appid", value: Constants.API_KEY)]
-        return URLSession.shared.dataTaskPublisher(for: components.url!)
-          .map { data, _ in data }
-          .decode(type: ForecastResponse.self, decoder: DefaultJSONDecoder())
-          .mapError { _ in WeatherClientFailure() }
-          .eraseToEffect()
+    func forecast(query: QueryParser.ResultType) -> Effect<ForecastResponse, WeatherClientFailure> {
+        guard let components = URLComponentsFactory().create(query: query, endpoint: .forecast) else { return Effect(error: WeatherClientFailure()) }
+        return performRequest(components: components)
     }
     
     // MARK: Image
@@ -62,13 +37,13 @@ class WeatherClient: WeatherClientProtocol {
     
     // MARK: Helpers
     
-    private func performCurrentConditionRequest(queryParameters: [URLQueryItem]) -> Effect<CurrentConditionResponse, WeatherClientFailure> {
-        guard var components = URLComponents(string: "https://api.openweathermap.org/data/2.5/weather") else { return Effect(error: WeatherClientFailure())  }
-        components.queryItems = queryParameters
+    private func performRequest<T: Decodable>(components: URLComponents) -> Effect<T, WeatherClientFailure> {
         return URLSession.shared.dataTaskPublisher(for: components.url!)
           .map { data, _ in data }
-          .decode(type: CurrentConditionResponse.self, decoder: DefaultJSONDecoder())
-          .mapError { _ in WeatherClientFailure() }
-          .eraseToEffect()
+          .decode(type: T.self, decoder: DefaultJSONDecoder())
+          .mapError { error in
+            print("API Error: \(error)")
+            return WeatherClientFailure()
+          }.eraseToEffect()
     }
 }

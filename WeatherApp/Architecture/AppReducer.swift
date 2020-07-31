@@ -7,21 +7,8 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
   switch action {
   case .searchTermChanged(let term):
     state.searchQuery = term
-
-    let result = QueryParser().parse(term: term)
-    switch result {
-    case .cityAndState(let city, let state):
-        return env.weatherClient.searchByCity(city: city).scheduled(scheduler: env.mainQueue)
-    case .cityName(let city):
-        return env.weatherClient.searchByCity(city: city).scheduled(scheduler: env.mainQueue)
-    case .latitudeLongitude(let lat, let lon):
-        return env.weatherClient.searchByCoordinates(lat: lat, lon: lon).scheduled(scheduler: env.mainQueue)
-    case .unrecognized:
-        return .none
-    case .zipCode(let zip):
-        return env.weatherClient.searchByZipcode(zipcode: zip).scheduled(scheduler: env.mainQueue)
-    }
-    
+    state.query = QueryParser().parse(term: term)
+    return env.weatherClient.weather(query: state.query).scheduled(scheduler: env.mainQueue)
   case .currentConditionResponse(.success(let response)):
     state.locationName = response.name
     state.condition = response.weather[0].main
@@ -30,7 +17,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
     
     return .merge(
         env.weatherClient.conditionImageFromString(string: response.weather[0].icon).scheduled(scheduler: env.mainQueue),
-        env.weatherClient.searchForecast(cityID: response.id).scheduled(scheduler: env.mainQueue)
+        env.weatherClient.forecast(query: state.query).scheduled(scheduler: env.mainQueue)
     )
   case .currentConditionResponse(.failure(let error)):
     // TODO

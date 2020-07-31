@@ -2,7 +2,7 @@ import Foundation
 import CoreLocation
 import SwiftUI
 
-struct DailyWeather {
+struct DailyWeather: Equatable {
     let uuid: UUID = UUID()
     let image: Image
     let condition: String
@@ -17,7 +17,9 @@ struct AppState: Equatable {
            lhs.locationCoordinate.longitude == rhs.locationCoordinate.longitude,
            lhs.locationName == rhs.locationName,
            lhs.condition == rhs.condition,
-           lhs.conditionImage == rhs.conditionImage {
+           lhs.conditionImage == rhs.conditionImage,
+           lhs.dailyWeather == rhs.dailyWeather,
+           lhs.searchQuery == rhs.searchQuery {
             return true
         }
         return false
@@ -30,6 +32,7 @@ struct AppState: Equatable {
     var conditionImage: Image
     var dailyWeather: [DailyWeather]
     var searchQuery: String
+    var query: QueryParser.ResultType
     
     init() {
         self.temperatureDegrees = "-- °F"
@@ -39,5 +42,6 @@ struct AppState: Equatable {
         self.conditionImage = Constants.DEFAULT_WEATHER_IMAGE
         self.dailyWeather = Array(repeating: Constants.SAMPLE_WEATHER, count: 7)
         self.searchQuery = ""
+        self.query = .unrecognized
     }
 }

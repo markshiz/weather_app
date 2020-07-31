@@ -34,9 +34,11 @@ struct ContentView: View {
                             .font(.headline)
                     }
                 }.padding()
-                List(viewStore.dailyWeather, id: \.uuid, rowContent: { weather in
-                    DailyWeatherRow(state: weather)
-                })
+                List {
+                    ForEach(viewStore.dailyWeather, id: \.uuid) { weather in
+                        DailyWeatherRow(state: weather)
+                    }
+                }
                 Spacer()
             }.background(Color(UIColor.systemBackground))
         }
