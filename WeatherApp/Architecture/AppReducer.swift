@@ -17,7 +17,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
     state.temperatureDegrees = KelvinToFarenheight(value: response.main.temp)
     
     return .merge(
-        env.weatherClient.conditionImageFromString(string: response.weather[0].icon).scheduled(scheduler: env.mainQueue),
+        env.weatherClient.conditionImageFromTag(tag: response.weather[0].icon).scheduled(scheduler: env.mainQueue),
         env.weatherClient.forecast(query: state.query).scheduled(scheduler: env.mainQueue)
     )
   case .currentConditionResponse(.failure(let error)):
@@ -36,7 +36,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
         df.amSymbol = "AM"
         df.pmSymbol = "PM"
         return DailyWeather(date: df.string(from: item.dt),
-                            image: Constants.DEFAULT_WEATHER_IMAGE, // TODO
+                            tag: item.weather[0].icon,
                             condition: item.weather[0].main,
                             hiTemp: KelvinToFarenheight(value: item.main.tempMax),
                             lowTemp: KelvinToFarenheight(value: item.main.tempMin))

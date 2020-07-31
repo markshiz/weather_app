@@ -57,7 +57,7 @@ class WeatherClientTests: XCTestCase {
     }
     
     func testImage() throws {
-        let recorder = try testEffect(effect: testObject.conditionImageFromString(string: "10d"))
+        let recorder = try testEffect(effect: testObject.conditionImageFromTag(tag: "10d"))
         let elements = try recorder.elements.get()
         XCTAssertNotNil(elements[0])
     }

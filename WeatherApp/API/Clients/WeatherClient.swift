@@ -11,7 +11,7 @@ protocol WeatherClientProtocol {
     func weather(query: QueryParser.ResultType) -> Effect<CurrentConditionResponse, APIFailure>
     func forecast(query: QueryParser.ResultType) -> Effect<ForecastResponse, APIFailure>
     
-    func conditionImageFromString(string: String) -> Effect<Image, APIFailure>
+    func conditionImageFromTag(tag: String) -> Effect<Image, APIFailure>
 }
 
 class WeatherClient: WeatherClientProtocol {
@@ -29,8 +29,8 @@ class WeatherClient: WeatherClientProtocol {
     
     // MARK: Image
     
-    func conditionImageFromString(string: String) -> Effect<Image, APIFailure> {
-        guard let components = URLComponents(string: "https://openweathermap.org/img/wn/\(string)@2x.png") else { return Effect(error: .imageFailure)}
+    func conditionImageFromTag(tag: String) -> Effect<Image, APIFailure> {
+        guard let components = URLComponents(string: "https://openweathermap.org/img/wn/\(tag)@2x.png") else { return Effect(error: .imageFailure)}
         return URLSession.shared.dataTaskPublisher(for: components.url!)
             .map { data, _ in Image(uiImage: UIImage(data: data)!) }
             .mapError { _ in .imageFailure }
