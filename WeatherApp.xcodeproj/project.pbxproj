@@ -13,6 +13,8 @@
 		0256A6D524D30D3B00D8FF00 /* WeatherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256A6D224D30D3B00D8FF00 /* WeatherClient.swift */; };
 		0256A6DA24D30D9B00D8FF00 /* historical_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = 0256A6D824D30D9B00D8FF00 /* historical_forecast.json */; };
 		0256A6DB24D30D9B00D8FF00 /* current_location.json in Resources */ = {isa = PBXBuildFile; fileRef = 0256A6D924D30D9B00D8FF00 /* current_location.json */; };
+		0282821524D3B9E60097615F /* JSONUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282821424D3B9E60097615F /* JSONUtil.swift */; };
+		0282821724D3BFBD0097615F /* KelvinToFarenheight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282821624D3BFBD0097615F /* KelvinToFarenheight.swift */; };
 		029DBA8A24D1162E00A697C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBA8924D1162E00A697C5 /* AppDelegate.swift */; };
 		029DBA8C24D1162E00A697C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBA8B24D1162E00A697C5 /* SceneDelegate.swift */; };
 		029DBA8E24D1162E00A697C5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBA8D24D1162E00A697C5 /* ContentView.swift */; };
@@ -58,6 +60,8 @@
 		0256A6D224D30D3B00D8FF00 /* WeatherClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherClient.swift; sourceTree = "<group>"; };
 		0256A6D824D30D9B00D8FF00 /* historical_forecast.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = historical_forecast.json; sourceTree = "<group>"; };
 		0256A6D924D30D9B00D8FF00 /* current_location.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = current_location.json; sourceTree = "<group>"; };
+		0282821424D3B9E60097615F /* JSONUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUtil.swift; sourceTree = "<group>"; };
+		0282821624D3BFBD0097615F /* KelvinToFarenheight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelvinToFarenheight.swift; sourceTree = "<group>"; };
 		029DBA8624D1162E00A697C5 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		029DBA8924D1162E00A697C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		029DBA8B24D1162E00A697C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +140,15 @@
 			path = Fixtures;
 			sourceTree = "<group>";
 		};
+		0282821324D3B7D90097615F /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				0282821424D3B9E60097615F /* JSONUtil.swift */,
+				0282821624D3BFBD0097615F /* KelvinToFarenheight.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		029DBA7D24D1162E00A697C5 = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +178,7 @@
 				029DBAC824D1C02700A697C5 /* Architecture */,
 				029DBAC024D11A9E00A697C5 /* MainView */,
 				029DBA9124D1163000A697C5 /* Resources */,
+				0282821324D3B7D90097615F /* Utility */,
 				029DBA8924D1162E00A697C5 /* AppDelegate.swift */,
 				029DBA8B24D1162E00A697C5 /* SceneDelegate.swift */,
 				029DBABE24D1189D00A697C5 /* Constants.swift */,
@@ -387,6 +401,7 @@
 				029DBACC24D1C27100A697C5 /* AppAction.swift in Sources */,
 				029DBA8A24D1162E00A697C5 /* AppDelegate.swift in Sources */,
 				029DBACA24D1C02F00A697C5 /* AppState.swift in Sources */,
+				0282821724D3BFBD0097615F /* KelvinToFarenheight.swift in Sources */,
 				029DBAD024D1C32A00A697C5 /* AppReducer.swift in Sources */,
 				029DBABD24D1173600A697C5 /* MapView.swift in Sources */,
 				029DBA8C24D1162E00A697C5 /* SceneDelegate.swift in Sources */,
@@ -394,6 +409,7 @@
 				0256A6D524D30D3B00D8FF00 /* WeatherClient.swift in Sources */,
 				029DBAD224D1C75100A697C5 /* CurrentConditionResponse.swift in Sources */,
 				029DBAC224D11DBF00A697C5 /* CircleImage.swift in Sources */,
+				0282821524D3B9E60097615F /* JSONUtil.swift in Sources */,
 				029DBACE24D1C2BD00A697C5 /* AppEnvironment.swift in Sources */,
 				02379C1124D26626001C3687 /* DailyWeatherRow.swift in Sources */,
 			);

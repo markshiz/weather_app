@@ -13,8 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             initialState: AppState(),
             reducer: appReducer,
             environment: AppEnvironment(
-              mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-              currentConditionResponse: { query in Effect(error: ApiError()) }
+              mainQueue: DispatchQueue.main.eraseToAnyScheduler()
             )
           )
         )
