@@ -33,7 +33,8 @@ struct AppState: Equatable {
            lhs.condition == rhs.condition,
            lhs.conditionImage == rhs.conditionImage,
            lhs.dailyWeather == rhs.dailyWeather,
-           lhs.searchQuery == rhs.searchQuery {
+           lhs.searchQuery == rhs.searchQuery,
+           lhs.showAlert == rhs.showAlert {
             return true
         }
         return false
@@ -47,7 +48,8 @@ struct AppState: Equatable {
     var dailyWeather: [DailyWeather]
     var searchQuery: String
     var query: QueryParser.ResultType
-    
+    var showAlert: Bool
+
     init() {
         self.temperatureDegrees = ""
         self.locationCoordinate = Constants.START_LOCATION
@@ -57,5 +59,6 @@ struct AppState: Equatable {
         self.dailyWeather = []
         self.searchQuery = "saint louis, mo "
         self.query = .unrecognized
+        self.showAlert = false
     }
 }

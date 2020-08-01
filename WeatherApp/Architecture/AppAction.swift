@@ -6,4 +6,5 @@ enum AppAction: Equatable {
   case currentConditionResponse(Result<CurrentConditionResponse, APIFailure>)
   case forecastResponse(Result<ForecastResponse, APIFailure>)
   case conditionImageChanged(Result<Image, APIFailure>)
+  case alertDismissed
 }

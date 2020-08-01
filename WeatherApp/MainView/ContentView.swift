@@ -10,8 +10,7 @@ struct ContentView: View {
             VStack {
                 TextField(
                   "St Louis, 63109, (38.0, -90.0) ...",
-                  text: viewStore.binding(
-                    get: { $0.searchQuery }, send: AppAction.searchTermChanged)
+                  text: viewStore.binding(get: { $0.searchQuery }, send: AppAction.searchTermChanged)
                 )
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
@@ -42,6 +41,8 @@ struct ContentView: View {
                 Spacer()
             }.background(Color(UIColor.systemBackground)).onAppear {
                 viewStore.send(.searchTermChanged(viewStore.searchQuery))
+            }.alert(isPresented: viewStore.binding(get: { $0.showAlert }, send: AppAction.alertDismissed)) {
+                Alert(title: Text("Error"), message: Text("An API error occurred.  Please try again later."), dismissButton: .default(Text("Got it!")))
             }
         }
     }
