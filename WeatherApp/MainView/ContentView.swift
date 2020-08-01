@@ -15,28 +15,32 @@ struct ContentView: View {
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
                 .padding(5)
-                MapView(coordinate: viewStore.locationCoordinate)
-                    .edgesIgnoringSafeArea(.top)
-                    .frame(height: 200)
-                CircleImage(image: viewStore.conditionImage)
-                    .frame(width: 70, height: 70)
-                    .offset(y: -35)
-                    .padding(.bottom, -35)
-                VStack(alignment: .leading) {
-                    Text(viewStore.locationName)
-                        .font(.headline)
-                    HStack(alignment: .top) {
-                        Text(viewStore.condition)
-                            .font(.subheadline)
-                        Spacer()
-                        Text(viewStore.temperatureDegrees)
+                VStack {
+                    MapView(coordinate: viewStore.locationCoordinate)
+                        .edgesIgnoringSafeArea(.top)
+                        .frame(height: 200)
+                    CircleImage(image: viewStore.conditionImage)
+                        .frame(width: 70, height: 70)
+                        .offset(y: -35)
+                        .padding(.bottom, -35)
+                    VStack(alignment: .leading) {
+                        Text(viewStore.locationName)
                             .font(.headline)
+                        HStack(alignment: .top) {
+                            Text(viewStore.condition)
+                                .font(.subheadline)
+                            Spacer()
+                            Text(viewStore.temperatureDegrees)
+                                .font(.headline)
+                        }
+                    }.padding()
+                    List {
+                        ForEach(viewStore.dailyWeather, id: \.date) { weather in
+                            DailyWeatherRow(state: weather)
+                        }
                     }
-                }.padding()
-                List {
-                    ForEach(viewStore.dailyWeather, id: \.date) { weather in
-                        DailyWeatherRow(state: weather)
-                    }
+                }.onTapGesture {
+                    self.hideKeyboard()
                 }
                 Spacer()
             }.background(Color(UIColor.systemBackground)).onAppear {

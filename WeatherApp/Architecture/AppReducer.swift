@@ -29,10 +29,20 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
   case .alertDismissed:
     state.showAlert = false
     return .none
-  default:
-    state.showAlert = true
-    return .none
+  case .currentConditionResponse(.failure(let error)):
+    return handleError(state: &state, error: error)
+  case .forecastResponse(.failure(let error)):
+    return handleError(state: &state, error: error)
+  case .conditionImageChanged(.failure(let error)):
+    return handleError(state: &state, error: error)
   }
+}
+
+private func handleError(state: inout AppState, error: APIFailure) -> Effect<AppAction, Never> {
+    if error != .weatherClientNotFound, error != .weatherClientBadURL {
+        state.showAlert = true
+    }
+    return .none
 }
 
 struct ImageRequest: Hashable {}

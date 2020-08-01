@@ -3,7 +3,11 @@ import SwiftUI
 import ComposableArchitecture
 
 enum APIFailure: Error, Equatable {
-    case weatherClientFailure
+    case weatherClientBadStatus(code: Int)
+    case weatherClientBadResponse
+    case weatherClientNotFound
+    case weatherClientDecoding
+    case weatherClientBadURL
     case imageFailure
 }
 
@@ -18,12 +22,12 @@ class WeatherClient: WeatherClientProtocol {
     // MARK: Endpoints
     
     func weather(query: QueryParser.ResultType) -> Effect<CurrentConditionResponse, APIFailure> {
-        guard let components = URLComponentsFactory().create(query: query, endpoint: .weather) else { return Effect(error: .weatherClientFailure) }
+        guard let components = URLComponentsFactory().create(query: query, endpoint: .weather) else { return Effect(error: .weatherClientBadURL) }
         return performRequest(components: components)
     }
     
     func forecast(query: QueryParser.ResultType) -> Effect<ForecastResponse, APIFailure> {
-        guard let components = URLComponentsFactory().create(query: query, endpoint: .forecast) else { return Effect(error: .weatherClientFailure) }
+        guard let components = URLComponentsFactory().create(query: query, endpoint: .forecast) else { return Effect(error: .weatherClientBadURL) }
         return performRequest(components: components)
     }
     
@@ -41,11 +45,24 @@ class WeatherClient: WeatherClientProtocol {
     
     private func performRequest<T: Decodable>(components: URLComponents) -> Effect<T, APIFailure> {
         return URLSession.shared.dataTaskPublisher(for: components.url!)
-          .map { data, _ in data }
+          .tryMap() { (data, response) -> Data in
+            guard let http = response as? HTTPURLResponse else {
+                throw APIFailure.weatherClientBadResponse
+            }
+            if http.statusCode == 404 {
+                throw APIFailure.weatherClientNotFound
+            } else if http.statusCode != 200 {
+                throw APIFailure.weatherClientBadStatus(code: http.statusCode)
+            }
+            return data
+          }
           .decode(type: T.self, decoder: DefaultJSONDecoder())
           .mapError { error in
-            print("API Error: \(error)")
-            return .weatherClientFailure
-          }.eraseToEffect()
+            guard let error = error as? APIFailure else {
+                return .weatherClientDecoding
+            }
+            return error
+          }
+          .eraseToEffect()
     }
 }
