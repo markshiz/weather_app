@@ -2,6 +2,11 @@
 
 A simple app that checks the weather and current conditions using [Swift Composable Architecture](https://github.com/pointfreeco/swift-composable-architecture).
 
+<p float="left">
+<img width="150" alt="Light Mode" src="https://storage.googleapis.com/mobconverge-blog/github/light_mode.PNG">
+<img width="150" alt="Dark Mode" src="https://storage.googleapis.com/mobconverge-blog/github/dark_mode.PNG">
+</p>
+
 ## Why Swift Composable Architecture?
 
 The library takes ideas from Facebook's Redux and ReSwift, using unidirectional flow, and a reducer to process all state changes, which then get emitted/propogated back to the view.  This library makes presentation layer state changes very testable and declarative.  SCA also works very well with SwiftUI and Combine.
