@@ -16,3 +16,17 @@ class MockWeatherClient: WeatherClientProtocol {
         return Effect(value: Constants.DEFAULT_WEATHER_IMAGE)
     }
 }
+
+class MockErrorWeatherClient: WeatherClientProtocol {
+    func weather(query: QueryParser.ResultType) -> Effect<CurrentConditionResponse, APIFailure> {
+        return Effect(error: .weatherClientFailure)
+    }
+    
+    func forecast(query: QueryParser.ResultType) -> Effect<ForecastResponse, APIFailure> {
+        return Effect(error: .weatherClientFailure)
+    }
+    
+    func conditionImageFromTag(tag: String) -> Effect<Image, APIFailure> {
+        return Effect(error: .imageFailure)
+    }
+}
