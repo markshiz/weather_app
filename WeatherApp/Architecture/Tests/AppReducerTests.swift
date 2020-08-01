@@ -65,7 +65,7 @@ class AppReducerTests: XCTestCase {
                 $0.query = .zipCode(query)
             },
             .do { TEST_SCHEDULER.advance(by: 0.3) },
-            .receive(.currentConditionResponse(.failure(.weatherClientFailure))) {
+            .receive(.currentConditionResponse(.failure(.weatherClientBadResponse))) {
                 $0.showAlert = true
             }
         )

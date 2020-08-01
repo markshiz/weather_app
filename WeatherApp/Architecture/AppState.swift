@@ -57,7 +57,7 @@ struct AppState: Equatable {
         self.condition = ""
         self.conditionImage = Constants.DEFAULT_WEATHER_IMAGE
         self.dailyWeather = []
-        self.searchQuery = "saint louis, mo "
+        self.searchQuery = PersistedState().query ?? "saint louis, mo"
         self.query = .unrecognized
         self.showAlert = false
     }

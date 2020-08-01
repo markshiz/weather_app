@@ -19,11 +19,11 @@ class MockWeatherClient: WeatherClientProtocol {
 
 class MockErrorWeatherClient: WeatherClientProtocol {
     func weather(query: QueryParser.ResultType) -> Effect<CurrentConditionResponse, APIFailure> {
-        return Effect(error: .weatherClientFailure)
+        return Effect(error: .weatherClientBadResponse)
     }
     
     func forecast(query: QueryParser.ResultType) -> Effect<ForecastResponse, APIFailure> {
-        return Effect(error: .weatherClientFailure)
+        return Effect(error: .weatherClientBadResponse)
     }
     
     func conditionImageFromTag(tag: String) -> Effect<Image, APIFailure> {

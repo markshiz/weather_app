@@ -11,6 +11,7 @@
 		02235ADF24D2732D00E145A6 /* QueryParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02235ADE24D2732D00E145A6 /* QueryParserTests.swift */; };
 		02379C1124D26626001C3687 /* DailyWeatherRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02379C1024D26626001C3687 /* DailyWeatherRow.swift */; };
 		02480F8024D5C5FD00A60C27 /* View+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02480F7F24D5C5FD00A60C27 /* View+Additions.swift */; };
+		02480F8224D5CEBA00A60C27 /* PersistedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02480F8124D5CEBA00A60C27 /* PersistedState.swift */; };
 		0256A6D524D30D3B00D8FF00 /* WeatherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256A6D224D30D3B00D8FF00 /* WeatherClient.swift */; };
 		0282821524D3B9E60097615F /* JSONUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282821424D3B9E60097615F /* JSONUtil.swift */; };
 		0282821724D3BFBD0097615F /* KelvinToFarenheight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282821624D3BFBD0097615F /* KelvinToFarenheight.swift */; };
@@ -70,6 +71,7 @@
 		02235ADE24D2732D00E145A6 /* QueryParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryParserTests.swift; sourceTree = "<group>"; };
 		02379C1024D26626001C3687 /* DailyWeatherRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherRow.swift; sourceTree = "<group>"; };
 		02480F7F24D5C5FD00A60C27 /* View+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Additions.swift"; sourceTree = "<group>"; };
+		02480F8124D5CEBA00A60C27 /* PersistedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistedState.swift; sourceTree = "<group>"; };
 		0256A6D224D30D3B00D8FF00 /* WeatherClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherClient.swift; sourceTree = "<group>"; };
 		0256A6D824D30D9B00D8FF00 /* forecast.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = forecast.json; sourceTree = "<group>"; };
 		0256A6D924D30D9B00D8FF00 /* current_location.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = current_location.json; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				0282821624D3BFBD0097615F /* KelvinToFarenheight.swift */,
 				0282821424D3B9E60097615F /* JSONUtil.swift */,
 				0282823724D4BBC90097615F /* ImageFetcher.swift */,
+				02480F8124D5CEBA00A60C27 /* PersistedState.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				0282822924D4699D0097615F /* StateCodeToStateName.swift in Sources */,
 				0282823A24D4BC6A0097615F /* ImageFromTagWithPlaceholder.swift in Sources */,
 				0282821724D3BFBD0097615F /* KelvinToFarenheight.swift in Sources */,
+				02480F8224D5CEBA00A60C27 /* PersistedState.swift in Sources */,
 				029DBAD024D1C32A00A697C5 /* AppReducer.swift in Sources */,
 				0282823824D4BBC90097615F /* ImageFetcher.swift in Sources */,
 				029DBABD24D1173600A697C5 /* MapView.swift in Sources */,

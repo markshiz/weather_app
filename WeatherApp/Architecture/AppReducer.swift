@@ -7,6 +7,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
   switch action {
   case .searchTermChanged(let term):
     state.searchQuery = term
+    PersistedState().query = term
     state.query = QueryParser().parse(term: term)
     return env.weatherClient.weather(query: state.query).scheduled(scheduler: env.mainQueue)
   case .currentConditionResponse(.success(let response)):

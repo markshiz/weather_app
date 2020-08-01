@@ -1,43 +1,74 @@
-//
-//  WeatherAppUITests.swift
-//  WeatherAppUITests
-//
-//  Created by Mark Schisler on 7/28/20.
-//  Copyright © 2020 Mark Schisler. All rights reserved.
-//
-
 import XCTest
 
+extension XCUIElement {
+    func clearText() {
+        guard let stringValue = self.value as? String else {
+            return
+        }
+
+        var deleteString = String()
+        for _ in stringValue {
+            deleteString += XCUIKeyboardKey.delete.rawValue
+        }
+        typeText(deleteString)
+    }
+}
+
 class WeatherAppUITests: XCTestCase {
-
+    private let app = XCUIApplication()
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+    
+    func testSearchChicago() throws {
         app.launch()
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        enterText(string: "chicago")
+        
+        waitForTextToAppear(string: "Chicago")
+        XCTAssertTrue(app.tables.cells.count > 0, "There should be weather details")
+    }
+    
+    func testSearchParis() throws {
+        app.launch()
+        
+        enterText(string: "paris")
+        
+        waitForTextToAppear(string: "Paris")
+        XCTAssertTrue(app.tables.cells.count > 0, "There should be weather details")
     }
 
+    func testQuerySavedBetweenLaunches() throws {
+        let text = "save me"
+        
+        app.launch()
+        enterText(string: text)
+        app.launch()
+        
+        XCTAssertEqual(app.textFields.firstMatch.value as? String, text)
+    }
+
+    
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
             measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
                 XCUIApplication().launch()
             }
         }
+    }
+    
+    private func enterText(string: String) {
+        let textField = app.textFields.firstMatch
+        textField.tap()
+        textField.clearText()
+        textField.typeText(string)
+    }
+    
+    private func waitForTextToAppear(string: String) {
+        let label = app.staticTexts[string]
+        let exists = NSPredicate(format: "exists == 1")
+        expectation(for: exists, evaluatedWith: label, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
     }
 }
