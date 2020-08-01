@@ -24,10 +24,10 @@ struct ContentView: View {
                     .offset(y: -35)
                     .padding(.bottom, -35)
                 VStack(alignment: .leading) {
-                    Text(viewStore.condition)
+                    Text(viewStore.locationName)
                         .font(.headline)
                     HStack(alignment: .top) {
-                        Text(viewStore.locationName)
+                        Text(viewStore.condition)
                             .font(.subheadline)
                         Spacer()
                         Text(viewStore.temperatureDegrees)
@@ -35,7 +35,7 @@ struct ContentView: View {
                     }
                 }.padding()
                 List {
-                    ForEach(viewStore.dailyWeather, id: \.uuid) { weather in
+                    ForEach(viewStore.dailyWeather, id: \.date) { weather in
                         DailyWeatherRow(state: weather)
                     }
                 }

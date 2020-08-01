@@ -31,15 +31,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
     return .none
   case .forecastResponse(.success(let response)):
     state.dailyWeather = response.list.map { item -> DailyWeather in
-        let df = DateFormatter()
-        df.setLocalizedDateFormatFromTemplate("EEE hh a")
-        df.amSymbol = "AM"
-        df.pmSymbol = "PM"
-        return DailyWeather(date: df.string(from: item.dt),
-                            tag: item.weather[0].icon,
-                            condition: item.weather[0].main,
-                            hiTemp: KelvinToFarenheight(value: item.main.tempMax),
-                            lowTemp: KelvinToFarenheight(value: item.main.tempMin))
+        return DailyWeather(forecast: item)
     }
     return .none
   case .forecastResponse(.failure(let error)):
@@ -63,7 +55,7 @@ extension Effect where Output == ForecastResponse, Failure == APIFailure {
             .receive(on: scheduler)
             .catchToEffect()
             .map(AppAction.forecastResponse)
-            .cancellable(id: UUID(), cancelInFlight: true)
+            .cancellable(id: Endpoint.forecast, cancelInFlight: true)
     }
 }
 
@@ -73,7 +65,8 @@ extension Effect where Output == CurrentConditionResponse, Failure == APIFailure
             .receive(on: scheduler)
             .catchToEffect()
             .map(AppAction.currentConditionResponse)
-            .cancellable(id: UUID(), cancelInFlight: true)
+            .debounce(id: Endpoint.weather, for: 0.3, scheduler: scheduler)
+            .cancellable(id: Endpoint.weather, cancelInFlight: true)
     }
 }
 

@@ -3,12 +3,25 @@ import CoreLocation
 import SwiftUI
 
 struct DailyWeather: Equatable {
-    let uuid: UUID = UUID()
     let date: String
     let tag: String
     let condition: String
     let hiTemp: String
     let lowTemp: String
+}
+
+extension DailyWeather {
+    init(forecast: ForecastListItem) {
+        let df = DateFormatter()
+        df.setLocalizedDateFormatFromTemplate("EEE hh a")
+        df.amSymbol = "AM"
+        df.pmSymbol = "PM"
+        self.date = df.string(from: forecast.dt)
+        self.tag = forecast.weather[0].icon
+        self.condition = forecast.weather[0].main
+        self.hiTemp = KelvinToFarenheight(value: forecast.main.tempMax)
+        self.lowTemp = KelvinToFarenheight(value: forecast.main.tempMin)
+    }
 }
 
 struct AppState: Equatable {
@@ -36,13 +49,13 @@ struct AppState: Equatable {
     var query: QueryParser.ResultType
     
     init() {
-        self.temperatureDegrees = "-- °F"
+        self.temperatureDegrees = ""
         self.locationCoordinate = Constants.START_LOCATION
-        self.locationName = "Unknown Location"
-        self.condition = "Unknown Condition"
+        self.locationName = ""
+        self.condition = ""
         self.conditionImage = Constants.DEFAULT_WEATHER_IMAGE
         self.dailyWeather = []
-        self.searchQuery = "63136"
+        self.searchQuery = "saint louis, mo "
         self.query = .unrecognized
     }
 }

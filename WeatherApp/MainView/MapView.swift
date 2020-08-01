@@ -41,7 +41,7 @@ private var tileOverlay: MKTileOverlay = {
 
 private var delegate: MapViewDelegate = {
     let tileRenderer = MKTileOverlayRenderer(tileOverlay: tileOverlay)
-    tileRenderer.alpha = 0.8
+    tileRenderer.alpha = 1
     return MapViewDelegate(renderer: tileRenderer)
 }()
 
