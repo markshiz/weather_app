@@ -34,6 +34,7 @@ struct AppState: Equatable {
            lhs.conditionImage == rhs.conditionImage,
            lhs.dailyWeather == rhs.dailyWeather,
            lhs.searchQuery == rhs.searchQuery,
+           lhs.query == rhs.query,
            lhs.showAlert == rhs.showAlert {
             return true
         }

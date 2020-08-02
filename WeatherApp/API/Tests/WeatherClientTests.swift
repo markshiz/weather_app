@@ -35,25 +35,25 @@ class WeatherClientTests: XCTestCase {
     func testWeatherCitySearch() throws {
         let recorder = try testEffect(effect: testObject.weather(query: .cityName("saint louis")))
         let elements = try recorder.elements.get()
-        XCTAssertNotNil(elements[0].name)
+        XCTAssertTrue(elements[0].name.contains("Louis"))
     }
 
     func testWeatherZipSearch() throws {
         let recorder = try testEffect(effect: testObject.weather(query: .zipCode("63109")))
         let elements = try recorder.elements.get()
-        XCTAssertNotNil(elements[0].name)
+        XCTAssertTrue(elements[0].name.contains("Louis"))
     }
     
     func testWeatherLatLongSearch() throws {
-        let recorder = try testEffect(effect: testObject.weather(query: .latitudeLongitude(38, -90)))
+        let recorder = try testEffect(effect: testObject.weather(query: .latitudeLongitude(38.6270, -90.1994)))
         let elements = try recorder.elements.get()
-        XCTAssertNotNil(elements[0].name)
+        XCTAssertTrue(elements[0].name.contains("Louis"))
     }
     
     func testWeatherCityStateSearch() throws {
         let recorder = try testEffect(effect: testObject.weather(query: .cityAndState("chicago", "illinois")))
         let elements = try recorder.elements.get()
-        XCTAssertNotNil(elements[0].name)
+        XCTAssertEqual(elements[0].name, "Chicago")
     }
     
     func testImage() throws {

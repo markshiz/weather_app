@@ -50,6 +50,8 @@
 		029DBACE24D1C2BD00A697C5 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBACD24D1C2BD00A697C5 /* AppEnvironment.swift */; };
 		029DBAD024D1C32A00A697C5 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBACF24D1C32A00A697C5 /* AppReducer.swift */; };
 		029DBAD224D1C75100A697C5 /* CurrentConditionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029DBAD124D1C75100A697C5 /* CurrentConditionResponse.swift */; };
+		02D317A524D77A5700EB08AE /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D317A324D77A4600EB08AE /* AppStateTests.swift */; };
+		02D317A824D77F2D00EB08AE /* URLComponentsFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D317A624D77EFF00EB08AE /* URLComponentsFactoryTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +118,8 @@
 		029DBACD24D1C2BD00A697C5 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		029DBACF24D1C32A00A697C5 /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		029DBAD124D1C75100A697C5 /* CurrentConditionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentConditionResponse.swift; sourceTree = "<group>"; };
+		02D317A324D77A4600EB08AE /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
+		02D317A624D77EFF00EB08AE /* URLComponentsFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLComponentsFactoryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +225,7 @@
 				0282822124D4636E0097615F /* WeatherClientTests.swift */,
 				0282822F24D475100097615F /* CurrentConditionResponseTests.swift */,
 				0282823424D4AE9A0097615F /* ForecastResponseTests.swift */,
+				02D317A624D77EFF00EB08AE /* URLComponentsFactoryTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				0282823B24D4C8BF0097615F /* AppReducerTests.swift */,
+				02D317A324D77A4600EB08AE /* AppStateTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -530,9 +536,11 @@
 				0282823D24D4CA870097615F /* AppReducerTests.swift in Sources */,
 				0282822E24D46A730097615F /* KelvinToFarnenheightTests.swift in Sources */,
 				0282823F24D4CC0C0097615F /* MockWeatherClient.swift in Sources */,
+				02D317A524D77A5700EB08AE /* AppStateTests.swift in Sources */,
 				0282823624D4AEBC0097615F /* ForecastResponseTests.swift in Sources */,
 				0282822724D465C80097615F /* WeatherClientTests.swift in Sources */,
 				0282823124D475380097615F /* CurrentConditionResponseTests.swift in Sources */,
+				02D317A824D77F2D00EB08AE /* URLComponentsFactoryTests.swift in Sources */,
 				02235ADF24D2732D00E145A6 /* QueryParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
