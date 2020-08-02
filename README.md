@@ -22,7 +22,7 @@ The library takes ideas from Facebook's Redux and Elm, using unidirectional flow
 - Tests for app reducer level state changes including errors
 
 *UI Tests*
-- Several UI tests to integration test the applicaiton
+- Several UI tests to integration test the application
 
 ## Xcode Version
 
