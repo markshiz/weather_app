@@ -14,12 +14,12 @@ The library takes ideas from Facebook's Redux and Elm, using unidirectional flow
 ## Tests
 
 *Unit Tests*
-- Tests for its integration with the weather API, including test fixtures, which test proper parsing
-- Tests for properly parsing the query the user types in
-- Tests for transforming querys into URLs
-- Tests for Kelvin to Farenheieght Text Conversions
-- Tests for state equality
-- Tests for reducer level state changes including errors
+- Tests for its integration with the weather API, including test fixtures which test proper parsing
+- Tests for properly parsing the query the user types into the user interface
+- Tests for transforming querys into API queries and URLs
+- Tests for Kelvin to Farenheieght text conversions
+- Tests for app state equality
+- Tests for app reducer level state changes including errors
 
 *UI Tests*
 - Several UI tests to integration test the applicaiton
