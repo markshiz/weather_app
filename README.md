@@ -11,6 +11,19 @@ A simple app that checks the weather and current conditions using [Swift Composa
 
 The library takes ideas from Facebook's Redux and Elm, using unidirectional flow --and particularly a reducer object-- to process all state changes.  These state changes then get emitted/propogated back to the view via an observation regime.  This library makes presentation layer state changes (which are all contained inside an `Equatable` struct) and associated side-effects very testable and declarative.  SCA also works very well with SwiftUI and Combine, the foundations of new UI for iOS 13.
 
+## Tests
+
+*Unit Tests*
+- Tests for its integration with the weather API, including test fixtures, which test proper parsing
+- Tests for properly parsing the query the user types in
+- Tests for transforming querys into URLs
+- Tests for Kelvin to Farenheieght Text Conversions
+- Tests for state equality
+- Tests for reducer level state changes including errors
+
+*UI Tests*
+- Several UI tests to integration test the applicaiton
+
 ## Xcode Version
 
 Built with Xcode 11.6
